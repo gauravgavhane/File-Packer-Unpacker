@@ -1,64 +1,93 @@
-import java.lang.*;
 import java.util.*;
 import java.io.*;
 
-class Packer
+class program542
 {
-    public static void main(String arg[])
+    public static void main(String Arg[]) throws Exception
     {
-        try
+        Scanner sobj = new Scanner(System.in);
+
+        System.out.println("-----------------------------------------------------");
+        System.out.println("------- Marvellous Packer Unpacker CUI Module -------");
+        System.out.println("-----------------------------------------------------");
+
+        System.out.println("----------------- Packing Activity ------------------");
+        System.out.println();
+
+        System.out.println("Enter the name of Directory that you want to open for packing : ");
+        String FolderName = sobj.nextLine();
+
+        File fobj = new File(FolderName);
+
+        System.out.println("Enter the name of packed file that you want to create : ");
+        String PackedFile = sobj.nextLine();
+
+        File Packobj = new File(PackedFile);
+        
+        boolean bret = Packobj.createNewFile();
+        if(bret == false)
         {
-            Scanner sobj = new Scanner(System.in);
+            System.out.println("Unable to create packed file");
+            return;
+        }
 
-            System.out.println("Please enter directory / folder name");
-            String foldername= sobj.nextLine();
+        FileOutputStream foobj = new FileOutputStream(Packobj);
 
-            File dobj = new File(foldername);
+        if(fobj.exists())
+        {
+            int i = 0, j = 0;
+            int iCount = 0;
 
-            File allfiles[] = dobj.listFiles();
-            String name;
+            File Arr[] = fobj.listFiles();
 
-            System.out.println("Please packed file name");
-            String packfilename= sobj.nextLine();
-
-            File fobj=new File(packfilename);
-            boolean bobj = fobj.createNewFile();
-            FileOutputStream writerobj = new FileOutputStream(fobj);
-
-            FileInputStream readerobj = null;
-            int ret = 0;
-            byte buffer[] = new byte[100];
-
-            for(int i = 0; i < allfiles.length; i++)
+            
+            String Header = null;
+            int iRet = 0;
+            byte Buffer[] = new byte[1024];
+            FileInputStream fiobj = null;
+            
+            for(i = 0; i < Arr.length; i++)
             {
-                    name = allfiles[i].getName();
+                Header = Arr[i].getName();
+                
+                if(Header.endsWith(".txt") || Header.endsWith(".c") || Header.endsWith(".cpp") || Header.endsWith(".java") || Header.endsWith(".py"))
+                {
+                    System.out.println("File packed with name : "+Header);
+                    
+                    Header = Header + " " + Arr[i].length();
 
-                    if(name.endsWith(".txt"))
+                    for(j = Header.length(); j < 100; j++)
                     {
-                        name = name +" "+(allfiles[i].length());
-
-                        for(int j = name.length(); j<100; j++)
-                        {
-                            name = name + " ";
-                        }
-
-                        byte namearray[] = name.getBytes();
-                        writerobj.write(namearray,0,namearray.length);
-
-                        readerobj = new FileInputStream(allfiles[i]);
-
-                        while((ret = readerobj.read(buffer)) != -1)
-                        {
-                                writerobj.write(buffer,0,ret);
-                        }
-                        readerobj.close();
+                        Header = Header + " ";
                     }
-            }
-        }
-        catch(Exception obj)
-        {
-            System.out.println(obj);
-        }
 
+                    foobj.write(Header.getBytes(),0,100);
+
+                    fiobj = new FileInputStream(Arr[i]);
+
+                    while((iRet = fiobj.read(Buffer))!= -1)
+                    {
+                        foobj.write(Buffer,0,iRet);
+                    }
+
+                    fiobj.close();
+                    iCount++;
+                }
+            }
+
+            System.out.println("-----------------------------------------------------");
+            System.out.println("Packing activity completed..");
+            System.out.println("Number of files scan : "+Arr.length);
+            System.out.println("Number of files packed : "+iCount);
+            System.out.println("-----------------------------------------------------");
+
+            System.out.println("Thank you for using Marvellous Packer Unpacker tool");
+            foobj.close();
+        }
+        else
+        {
+            System.out.println("There is no such directory");
+        }
+     
     }
 }
