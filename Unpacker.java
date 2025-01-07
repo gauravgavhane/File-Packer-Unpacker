@@ -1,48 +1,73 @@
-import java.lang.*;
+// Unpacking Activity
+
 import java.util.*;
 import java.io.*;
 
-class Unpacker
+class program541
 {
-    public static void main(String arg[])
+    public static void main(String Arg[]) throws Exception
     {
-        try
+        Scanner sobj = new Scanner(System.in);
+        
+        byte Header[] = new byte[100];
+        int iRet = 0;
+        String HeaderX = null;
+        File obj = null;
+        int FileSize = 0;
+        FileOutputStream foobj = null;
+        int iCount = 0;
+        
+        System.out.println("-----------------------------------------------------");
+        System.out.println("------- Marvellous Packer Unpacker CUI Module -------");
+        System.out.println("-----------------------------------------------------");
+
+        System.out.println("---------------- Unpacking Activity -----------------");
+        System.out.println();
+
+        System.out.println("Enter the name of Packed that you want to open : ");
+        String PackedFile = sobj.nextLine();
+
+        File fobj = new File(PackedFile);
+
+        if(!fobj.exists())
         {
-            Scanner sobj = new Scanner(System.in);
+            System.out.println("Unable to proceed as Packed file is missing...");
+            return;
+        }  
 
-            System.out.println("Enter packed file name");
-            String PackFileName = sobj.nextLine();
+        FileInputStream fiobj = new FileInputStream(fobj);
 
-            File fobj = new File(PackFileName);
-
-            FileInputStream fiobj = new FileInputStream(fobj);
-            byte Headerarray[] = new byte[100];
-
-            String HeaderString = null;
-            String tokens[];
-
-            int ret = 0;
-
-            while((ret = fiobj.read(Headerarray,0,100)) > 0)
-            {
-                      HeaderString = new String(Headerarray);
-                      tokens = HeaderString.split(" ");
-
-                      File fobjnew=new File(tokens[0]);
-                      boolean bobj = fobjnew.createNewFile();
-
-                      int size = Integer.parseInt(tokens[1]);
-                      byte dataarray[] = new byte[size];
-
-                      fiobj.read(dataarray,0,size);
-
-                     FileOutputStream foobj = new FileOutputStream(fobjnew);
-                     foobj.write(dataarray,0,size);
-            }
-        }
-        catch(Exception obj)
+        while((iRet = fiobj.read(Header,0,100)) > 0)
         {
-            System.out.println(obj);
+            HeaderX = new String(Header);
+            HeaderX = HeaderX.trim();
+
+            String Tokens[] = HeaderX.split(" ");
+
+            obj = new File(Tokens[0]);
+            System.out.println("File drop with name : "+Tokens[0]);
+
+            obj.createNewFile();
+
+            FileSize = Integer.parseInt(Tokens[1]);
+            byte Buffer[] = new byte[FileSize];
+
+            fiobj.read(Buffer,0,FileSize);
+
+            foobj = new FileOutputStream(obj);
+            foobj.write(Buffer,0,FileSize);
+
+            foobj.close();
+            iCount++;
         }
+
+        System.out.println("-----------------------------------------------------");
+        System.out.println("Unpacking activity completed..");
+        System.out.println("Number of files unpacked : "+iCount);
+        System.out.println("-----------------------------------------------------");
+
+        System.out.println("Thank you for using Marvellous Packer Unpacker tool");
+        
+        fiobj.close();
     }
 }
