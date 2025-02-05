@@ -8,7 +8,7 @@ class program542
         Scanner sobj = new Scanner(System.in);
 
         System.out.println("-----------------------------------------------------");
-        System.out.println("------- Marvellous Packer Unpacker CUI Module -------");
+        System.out.println("-------  Packer Unpacker CUI Module -------");
         System.out.println("-----------------------------------------------------");
 
         System.out.println("----------------- Packing Activity ------------------");
@@ -81,7 +81,7 @@ class program542
             System.out.println("Number of files packed : "+iCount);
             System.out.println("-----------------------------------------------------");
 
-            System.out.println("Thank you for using Marvellous Packer Unpacker tool");
+            System.out.println("Thank you for using Packer Unpacker tool");
             foobj.close();
         }
         else

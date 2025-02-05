@@ -18,7 +18,7 @@ class program541
         int iCount = 0;
         
         System.out.println("-----------------------------------------------------");
-        System.out.println("------- Marvellous Packer Unpacker CUI Module -------");
+        System.out.println("------- Packer Unpacker CUI Module -------");
         System.out.println("-----------------------------------------------------");
 
         System.out.println("---------------- Unpacking Activity -----------------");
@@ -66,7 +66,7 @@ class program541
         System.out.println("Number of files unpacked : "+iCount);
         System.out.println("-----------------------------------------------------");
 
-        System.out.println("Thank you for using Marvellous Packer Unpacker tool");
+        System.out.println("Thank you for using Packer Unpacker tool");
         
         fiobj.close();
     }
