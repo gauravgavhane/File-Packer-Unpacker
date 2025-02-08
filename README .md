@@ -1,12 +1,12 @@
 # File Packer and Unpacker Tool
 
 ## Overview
-This Java-based tool allows you to pack multiple files into a single packed file and later unpack them. It is a command-line utility designed to handle text-based files such as `.txt`, `.c`, `.cpp`, `.java`, and `.py`.
+This Java-based tool allows you to pack multiple files into a single packed file and later unpack them. It is a command-line utility designed to handle regular files such as `.txt`, `.c`, `.cpp`, `.java`, and `.py`.
 
 ## Features
 - **Packing**: Combines multiple files into a single packed file.
 - **Unpacking**: Extracts files from the packed file to their original form.
-- **Supports Common File Types**: Works with `.txt`, `.c`, `.cpp`, `.java`, and `.py` files.
+- **Supports Regular File Types**: Works with `.txt`, `.c`, `.cpp`, `.java`, and `.py` files.
 - **User-Friendly**: Simple command-line interface for ease of use.
 
 ---
@@ -57,7 +57,7 @@ This Java-based tool allows you to pack multiple files into a single packed file
 ## Example
 
 ### Packing Files
-1. Create a directory named `FilesToPack` and add some `.txt`, `.java`, or other supported files.
+1. Create a directory named `FilesToPack` and add some `.txt`, `.java`, or other regular files.
 2. Run the `Packer` program:
 3. Enter `FilesToPack` as the directory name and `PackedFile.pack` as the packed file name.
 4. The program will pack the files and display a summary.
@@ -87,7 +87,7 @@ This Java-based tool allows you to pack multiple files into a single packed file
 ---
 
 ## Limitations
-- Only supports text-based files (`.txt`, `.c`, `.cpp`, `.java`, `.py`).
+- Only supports regular files (`.txt`, `.c`, `.cpp`, `.java`, `.py`).
 - The packed file format is specific to this tool and may not be compatible with other utilities.
 - Does not handle nested directories during packing.
 
